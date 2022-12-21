@@ -21,7 +21,7 @@ export class AppComponent {
   title = 'CasaSubito.it';
 
   checkLoggedIn(): boolean {
-    return true;
+    return false;
   }
 
 buttonsNav: any;
