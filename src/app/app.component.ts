@@ -18,6 +18,7 @@ export class AppComponent {
     //Add 'implements OnInit' to the class.
     this.checkLoggedIn();
   }
+
   title = 'CasaSubito.it';
 
   checkLoggedIn(): boolean {
