@@ -4,13 +4,13 @@
     <a class="p-2 text-dark" href="#">Supporto</a>
     <a class="p-2 text-dark" href="#">Contattaci</a>
   </nav>
-  <nav *ngIf="!checkLoggedIn()">
+  <nav *ngIf="getLoggedIn() === false">
     <a class="btn btn-outline-primary mr-md-3" href="http://localhost:8080/register">Register</a>
     <a class="btn btn-outline-primary" href="http://localhost:8080/login">Login</a>
   </nav>
-  <nav *ngIf="checkLoggedIn()">
-    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/profile"><i class="fa-solid fa-user"></i></a>
-    <a class="btn btn-primary" href="http://localhost:8080/logout">Logout</a>
+  <nav *ngIf="getLoggedIn() === true">
+    <a class="btn btn-primary mr-md-4" href="http://localhost:4200/profiles/{{nickname}}?sessionId={{sessionId}}"><span class="text-white">{{nickname}}</span></a>
+    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout"><span class="text-white">Logout</span></a>
   </nav>
 </div>
 

@@ -9,7 +9,7 @@
   </form>
 </div>
 
-<div class="container justify-content-center">
+<div *ngFor="let ad of ads" class="container justify-content-center">
   <div class="card">
     <div class="row no-gutters m-3">
         <div class="col-lg-5 col-md-7 col-md-12">
@@ -17,9 +17,11 @@
         </div>
         <div class="col">
             <div class="card-block px-2">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Qui andrebbe tutta la descrizione facente parte di codesto annuncio, non ho la più pallida idea di come si possa fare credo serva un service che chiami il database e faccia getAll() su adsDAO e poi /*ngFor="ad in ads" e fare robe del genere</p>
-                <a href="#" class="btn btn-primary">Prezzo</a>
+                <h4 class="card-title">{{ad.title}}</h4>
+                <p class="card-text">{{ad.description}}</p>
+                <a href="#" class="btn btn-primary">{{ad.price}}</a>
+                <hr>
+                <a href="/profiles/{{ad.user.nickname}}" class="card-text text-dark">{{ad.user.nickname}}</a>
             </div>
         </div>
     </div>
