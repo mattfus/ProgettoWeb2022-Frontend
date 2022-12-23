@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  //Array di annunci
+  //ads: Ad[] = [];
+
+  constructor(/*someService*/) { }
 
   ngOnInit(): void {
+    //Ci serve il service che prenda tutti gli annunci dal database
+    //someService.getAds().subscribe(ads => this.ads = ads);
   }
+
+
 
 }
