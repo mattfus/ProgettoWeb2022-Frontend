@@ -25,6 +25,4 @@ export class ProfilesComponent implements OnInit {
     //Add 'implements AfterContentChecked' to the class.
     this.sessionId = this.app.getSessionId();
   }
-
-
 }
