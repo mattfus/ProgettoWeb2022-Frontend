@@ -17,11 +17,16 @@ export class ServerService {
 
   }
 
-  getNickname(sessionId: string): Observable<string> {
-    return this.http.get<string>('http://localhost:8080/nickname', {params: {sessionId: sessionId}});
+  getUserBySession(sessionId: string): Observable<User> {
+    return this.http.get<User>('http://localhost:8080/user', {params: {parameter: sessionId, bySession: "true"}});
+  }
+
+  getUserByNickname(nickname: string): Observable<User> {
+    return this.http.get<User>('http://localhost:8080/user', {params: {parameter: nickname, bySession: "false"}});
   }
 
   getAds(): Observable<Ad[]>{
     return this.http.get<Ad[]>('http://localhost:8080/ads');
   }
+
 }

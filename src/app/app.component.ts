@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ServerService } from './server.service';
 import { waitForAsync } from '@angular/core/testing';
 import { Location } from '@angular/common';
+import { User } from './classes';
 
 
 @Component({
@@ -15,9 +16,9 @@ export class AppComponent {
 
   loggedIn: boolean = false;
   sessionId:string = "";
-  nickname:string = "";
+  user: User = new User();
 
-  constructor(private server : ServerService, private location: Location){}
+  constructor(private service : ServerService, private location: Location){}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -25,10 +26,16 @@ export class AppComponent {
     const urlParams = new URLSearchParams(window.location.search);
     let id = urlParams.get('sessionId');
     if(id != null && id != ""){
-      this.server.checkLoggedIn(id).subscribe(loggedIn => this.loggedIn = loggedIn).add( () => {
+      this.service.checkLoggedIn(id).subscribe(loggedIn => this.loggedIn = loggedIn).add( () => {
         if(this.loggedIn && id != null && id != ""){
-          this.server.getNickname(id).subscribe(nickname => this.nickname = nickname);
-          this.sessionId = id;
+          this.service.getUserBySession(id).subscribe(user => this.user = user).add( () => {
+            if(this.loggedIn && id != null && id != ""){
+              this.setSessionId(id);
+              if(this.user.nickname == null){
+                this.loggedIn = false;
+              }
+            }
+          });
         }
       });
 
@@ -46,11 +53,13 @@ export class AppComponent {
     return this.sessionId;
   }
 
-  public getNickname(): string{
-    return this.nickname;
+  public getUser(): User{
+    return this.user;
   }
 
-  buttonsNav: any;
+  private setSessionId(id: string){
+    this.sessionId = id;
+  }
 }
 
 

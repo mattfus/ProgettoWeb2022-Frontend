@@ -5,7 +5,7 @@
     <a class="p-2 text-dark" href="#">Contattaci</a>
   </nav>
   <nav>
-    <a class="btn btn-outline-primary mr-md-3" href="http://localhost:8080/register">Register</a>
+    <a class="btn btn-outline-primary mr-md-3" href="http://localhost:8080/register">Registrati </a>
     <a class="btn btn-outline-primary" href="http://localhost:8080/login">Login</a>
   </nav>
 </div>
@@ -18,8 +18,8 @@
   </nav>
   <nav>
     <a class="btn btn-outline-primary mr-md-4" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><span><i class="fa fa-plus"></i> Annuncio</span></a>
-    <a class="btn btn-primary mr-md-4" href="http://localhost:4200/profiles/{{nickname}}?sessionId={{sessionId}}"><span class="text-white">{{nickname}}</span></a>
-    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout"><span class="text-white">Esci</span></a>
+    <a class="btn btn-primary mr-md-4" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><span class="text-white">{{user.nickname}}</span></a>
+    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout?sessionId={{getSessionId()}}"><span class="text-white">Esci</span></a>
   </nav>
 </div>
 

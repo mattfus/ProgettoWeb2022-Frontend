@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     this.service.getAds().subscribe(ads => this.ads = ads);
   }
 
-   public getSessionId():string{
+  public getSessionId():string{
     return this.app.getSessionId();
   }
 

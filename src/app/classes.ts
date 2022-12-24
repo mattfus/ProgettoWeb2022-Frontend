@@ -8,16 +8,16 @@ export interface Ad{
   mq: number;
 }
 
-export interface User{
-  id: number;
-  name: string;
-  lastname: string;
-  nickname: string;
-  email: string;
-  age: Number;
-  password: string;
-  role: string;
-  isBanned: Boolean;
+export class User{
+  id!: number;
+  name!: string;
+  lastname!: string;
+  nickname!: string;
+  email!: string;
+  age!: Number;
+  password!: string;
+  role!: string;
+  isBanned!: Boolean;
 }
 
 export interface Property{
@@ -26,5 +26,6 @@ export interface Property{
   mq: number;
   latitude: string;
   longitude: string;
+  user : string;
 }
 
