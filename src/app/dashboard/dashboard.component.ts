@@ -4,6 +4,7 @@ import { User } from '../classes';
 import { Property } from '../classes';
 import { ServerService } from '../server.service';
 import { ActivatedRoute } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,8 +15,9 @@ export class DashboardComponent implements OnInit {
 
   //Array di annunci
   public ads: Ad[] = [];
+  public sessionId = "";
 
-  constructor(private service: ServerService, private route: ActivatedRoute) { }
+  constructor(private service: ServerService, private app: AppComponent) { }
 
   ngOnInit(): void {
     //Ci serve il service che prenda tutti gli annunci dal database
@@ -23,6 +25,9 @@ export class DashboardComponent implements OnInit {
     this.service.getAds().subscribe(ads => this.ads = ads);
   }
 
+   public getSessionId():string{
+    return this.app.getSessionId();
+  }
 
 
 }

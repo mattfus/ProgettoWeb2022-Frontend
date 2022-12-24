@@ -1,16 +1,25 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-  <a class="my-0 mr-md-auto" href="http://localhost:4200"><h1 class="my-0 mr-md-auto display-4 font-weight-normal ml-4">CasaSubito.it</h1></a>
+<div *ngIf="getLoggedIn() === false" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <a class="my-0 mr-md-auto" href="http://localhost:4200/"><h1 class="my-0 mr-md-auto display-4 font-weight-normal ml-4">CasaSubito.it</h1></a>
   <nav class="my-2 my-md-0 mr-md-3">
     <a class="p-2 text-dark" href="#">Supporto</a>
     <a class="p-2 text-dark" href="#">Contattaci</a>
   </nav>
-  <nav *ngIf="getLoggedIn() === false">
+  <nav>
     <a class="btn btn-outline-primary mr-md-3" href="http://localhost:8080/register">Register</a>
     <a class="btn btn-outline-primary" href="http://localhost:8080/login">Login</a>
   </nav>
-  <nav *ngIf="getLoggedIn() === true">
+</div>
+
+<div *ngIf="getLoggedIn() === true" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+  <a class="my-0 mr-md-auto" href="http://localhost:4200/dashboard?sessionId={{getSessionId()}}"><h1 class="my-0 mr-md-auto display-4 font-weight-normal ml-4">CasaSubito.it</h1></a>
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">Supporto</a>
+    <a class="p-2 text-dark" href="#">Contattaci</a>
+  </nav>
+  <nav>
+    <a class="btn btn-outline-primary mr-md-4" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><span><i class="fa fa-plus"></i> Annuncio</span></a>
     <a class="btn btn-primary mr-md-4" href="http://localhost:4200/profiles/{{nickname}}?sessionId={{sessionId}}"><span class="text-white">{{nickname}}</span></a>
-    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout"><span class="text-white">Logout</span></a>
+    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout"><span class="text-white">Esci</span></a>
   </nav>
 </div>
 
