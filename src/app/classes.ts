@@ -12,12 +12,12 @@ export class User{
   id!: number;
   name!: string;
   lastname!: string;
+  age!: number;
   nickname!: string;
-  email!: string;
-  age!: Number;
   password!: string;
+  email!: string;
   role!: string;
-  isBanned!: Boolean;
+  isBanned!: boolean;
 }
 
 export interface Property{

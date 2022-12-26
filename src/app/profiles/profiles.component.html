@@ -41,7 +41,7 @@
                   </div>
                   <div class="col-md-6">
                     <label>Regione</label>
-                    <input type="text" class="form-control" value="Calabria" placeholder="state">
+                    <input type="text" class="form-control" value="Calabria" placeholder="Regione">
                   </div>
                   <div class="col-md-6">
                     <label>Indirizzo di Residenza</label>
@@ -71,20 +71,17 @@
       <div class="col-md-4">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center experience">
-                <span>Annunci</span>
-                <span class="border px-3 p-1 add-experience">
-                  <i class="fa fa-plus"></i>&nbsp;Experience</span>
+                <span>Immobili</span>
+                <a class="btn btn-outline-primary mr-md-4" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><span><i class="fa fa-plus"></i> Annuncio</span>
+                </a>
                 </div>
                 <br>
               <div class="col-md-12">
-                <label class="labels">Experience in Designing</label>
-                <input type="text" class="form-control" placeholder="experience" value="">
+                <label for="propertiesList" class="labels">Lista dei tuoi Immobili</label>
+                <br>
+                <a name="propertiesList" class="btn btn-primary text-white" href="http://localhost:8080/properties">Lista Immobili</a>
               </div>
                  <br>
-              <div class="col-md-12">
-                <label class="labels">Additional Details</label>
-                <input type="text" class="form-control" placeholder="additional details" value="">
-              </div>
           </div>
       </div>
   </div>
@@ -93,7 +90,14 @@
 <div *ngIf="loggedUser.nickname !== user.nickname"class="container rounded bg-white mt-5 mb-5">
   <div class="row">
       <div class="col-md-3 border-right" style="margin-top: -2%;">
-          <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{user.name}} {{user.lastname}}</span><span class="text-black-50">{{user.email}}</span></div>
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <span class="font-weight-bold">{{user.name}} {{user.lastname}}</span>
+            <span class="text-black-50">{{user.email}}</span>
+          </div>
+          <div *ngIf="loggedUser.role === 'admin'" class="text-center">
+            <button class="btn alert-danger" type="button">Banna Utente</button>
+          </div>
       </div>
       <div class="col-md-5 border-right">
           <div class="p-1 py-5" style="margin-top: -5%;">
@@ -103,39 +107,39 @@
               <div class="row mt-2">
                   <div class="col-md-6">
                     <label class="labels">Nome</label>
-                    <input type="text" class="form-control" placeholder="Nome" value="{{user.name}}">
+                    <input type="text" class="form-control" placeholder="Nome" value="{{user.name}}" disabled>
                   </div>
                   <div class="col-md-6">
                     <label class="labels">Cognome</label>
-                    <input type="text" class="form-control" value="{{user.lastname}}" placeholder="Cognome">
+                    <input type="text" class="form-control" value="{{user.lastname}}" placeholder="Cognome" disabled>
                   </div>
               </div>
               <div class="row mt-3">
                   <div class="col-md-12">
                     <label class="labels">Numero di telefono</label>
-                    <input type="tel" class="form-control" placeholder="Numero di Telefono" value="">
+                    <input type="tel" class="form-control" placeholder="Numero di Telefono" value="" disabled>
                   </div>
                   <div class="col-md-12">
                     <label class="labels">Email</label>
-                    <input type="text" class="form-control" placeholder="e-mail" value="{{user.email}}">
+                    <input type="text" class="form-control" placeholder="e-mail" value="{{user.email}}" disabled>
                   </div>
               </div>
               <div class="row mt-3">
                   <div class="col-md-6">
                     <label class="labels">Paese</label>
-                    <input type="text" class="form-control" placeholder="country" value="Italia">
+                    <input type="text" class="form-control" placeholder="country" value="Italia" disabled>
                   </div>
                   <div class="col-md-6">
                     <label class="labels">Regione</label>
-                    <input type="text" class="form-control" value="Calabria" placeholder="state">
+                    <input type="text" class="form-control" value="Calabria" placeholder="state" disabled>
                   </div>
                   <div class="col-md-6">
                     <label class="labels">Indirizzo di Residenza</label>
-                    <input type="text" class="form-control" placeholder="Indirizzo" value="Via Giacomo Matteotti">
+                    <input type="text" class="form-control" placeholder="Indirizzo" value="Via Giacomo Matteotti" disabled>
                   </div>
                   <div class="col-md-12">
                     <label class="labels">CAP</label>
-                    <input type="tel" class="form-control" placeholder="Indirizzo" value="Via Giacomo Matteotti">
+                    <input type="tel" class="form-control" placeholder="Indirizzo" value="Via Giacomo Matteotti" disabled>
                   </div>
               </div>
               <div>

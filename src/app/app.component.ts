@@ -31,8 +31,10 @@ export class AppComponent {
           this.service.getUserBySession(id).subscribe(user => this.user = user).add( () => {
             if(this.loggedIn && id != null && id != ""){
               this.setSessionId(id);
+              console.log(this.user.isBanned);
               if(this.user.nickname == null){
                 this.loggedIn = false;
+                alert("Login Scaduto")
               }
             }
           });
@@ -60,6 +62,7 @@ export class AppComponent {
   private setSessionId(id: string){
     this.sessionId = id;
   }
+
 }
 
 

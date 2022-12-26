@@ -33,6 +33,7 @@ export class ProfilesComponent implements OnInit {
     //Add 'implements AfterContentChecked' to the class.
     this.sessionId = this.app.getSessionId();
     this.loggedUser = this.app.getUser();
+    console.log(this.user.isBanned);
 
   }
 
@@ -42,6 +43,10 @@ export class ProfilesComponent implements OnInit {
 
   public getUser(): User{
     return this.app.getUser();
+  }
+
+  public getUserBanned(): boolean{
+    return this.user.isBanned;
   }
 
 
