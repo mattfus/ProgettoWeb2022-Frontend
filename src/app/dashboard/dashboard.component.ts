@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   public ads: Ad[] = [];
   public sessionId: string = "";
   public searchType: string = "";
+  public adsFilter: string = "all";
 
   constructor(private service: ServerService, private app: AppComponent) { }
 
@@ -39,8 +40,12 @@ export class DashboardComponent implements OnInit {
 
   public onChange(event:Event){
     this.searchType = (<HTMLInputElement>event.target).value;
-
     console.log("Search type: " + this.searchType);
+  }
+
+  public onAdsFilterChange(parameter:string){
+    this.adsFilter = parameter;
+    console.log("Ads filter: " + this.adsFilter);
   }
 
   public getSearchType():string{

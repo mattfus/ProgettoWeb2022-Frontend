@@ -15,6 +15,7 @@ import { AppComponent } from '../app.component';
 export class AdCardsComponent implements OnChanges {
 
   @Input() ads: Ad[] = [] //Array di annunci
+  @Input() filter: string = ""; //Filtro di annunci
 
   constructor(private app: AppComponent){
 
@@ -32,5 +33,21 @@ export class AdCardsComponent implements OnChanges {
 
   public getSessionId():string{
     return this.app.getSessionId();
+  }
+
+  public isEmpty():boolean{
+    return this.ads.length == 0;
+  }
+
+  public canShow(status: string):boolean{
+    if(this.filter == "all"){
+      return true;
+    }else if(this.filter == "rent" && status == "affittasi"){
+      return true;
+    }else if(this.filter == "sell" && status == "vendesi"){
+      return true;
+    }else{
+      return false;
+    }
   }
 }

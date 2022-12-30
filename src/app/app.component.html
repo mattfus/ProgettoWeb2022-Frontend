@@ -13,10 +13,10 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto py-4 py-md-0">
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="#">Contattaci</a>
+                <a class="nav-link" href="http://localhost:4200/contactUs">Contattaci</a>
               </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="#">Supporto</a>
+                <a class="nav-link" href="http://localhost:4200/help">Supporto</a>
               </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 mr-auto">
                  <a class="nav-link" href="http://localhost:8080/login"><i class="fa-solid fa-right-to-bracket"></i> Accedi</a>
@@ -121,57 +121,6 @@
 <script src="../../dist/js/bootstrap.min.js"></script>
 <script src="../../assets/js/vendor/holder.min.js"></script>
 <script>
-  Holder.addTheme('thumb', {
-    bg: '#55595c',
-    fg: '#eceeef',
-    text: 'Thumbnail'
-  });
 
-  (function($) { "use strict";
-
-	$(function() {
-		var header = $(".start-style");
-		$(window).scroll(function() {
-			var scroll = $(window).scrollTop();
-
-			if (scroll >= 10) {
-				header.removeClass('start-style').addClass("scroll-on");
-			} else {
-				header.removeClass("scroll-on").addClass('start-style');
-			}
-		});
-	});
-
-	//Animation
-
-	$(document).ready(function() {
-		$('body.hero-anime').removeClass('hero-anime');
-	});
-
-	//Menu On Hover
-
-	$('body').on('mouseenter mouseleave','.nav-item',function(e){
-			if ($(window).width() > 750) {
-				var _d=$(e.target).closest('.nav-item');_d.addClass('show');
-				setTimeout(function(){
-				_d[_d.is(':hover')?'addClass':'removeClass']('show');
-				},1);
-			}
-	});
-
-	//Switch light/dark
-
-	$("#switch").on('click', function () {
-		if ($("body").hasClass("dark")) {
-			$("body").removeClass("dark");
-			$("#switch").removeClass("switched");
-		}
-		else {
-			$("body").addClass("dark");
-			$("#switch").addClass("switched");
-		}
-	});
-
-  })(jQuery);
 </script>
 
