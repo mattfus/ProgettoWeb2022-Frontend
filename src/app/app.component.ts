@@ -32,8 +32,9 @@ export class AppComponent {
             if(this.loggedIn && id != null && id != ""){
               this.setSessionId(id);
               console.log(this.user.isBanned);
-              if(this.user.nickname == null){
+              if(this.user.name == undefined){
                 this.loggedIn = false;
+                window.location.replace("http://localhost:4200/");
                 alert("Login Scaduto")
               }
             }

@@ -1,0 +1,27 @@
+<span *ngFor="let ad of ads">
+  <div class="container justify-content-center">
+    <div class="card jumbotron">
+      <div class="status text-center badge badge-danger alert" style="margin-top: -2%;" id="statusTitle">
+          <h2>{{ad.status.toUpperCase()}}</h2>
+      </div>
+      <div class="row no-gutters m-3">
+          <div class="col-lg-5 col-md-7 col-md-12">
+            <img src="https://fakeimg.pl/400x250/?text=Hello">
+          </div>
+          <div class="col">
+              <div class="card-block px-2">
+                  <h3 class="card-title">{{ad.title}}</h3>
+                  <p class="card-text">{{ad.description}}</p>
+                  <a href="#" class="btn btn-primary" disabled="disabled">{{ad.price}}</a>
+                  <hr>
+                  <a href="/profiles/{{ad.user.nickname}}?sessionId={{getSessionId()}}" class="card-text text-dark">{{ad.user.nickname}}</a>
+              </div>
+          </div>
+      </div>
+      <div class="card-footer w-100 text-muted">
+          <a href="/ad/{{ad.id}}?sessionId={{getSessionId()}}" class="btn btn-lg btn-outline-primary btn-block">Leggi annuncio</a>
+      </div>
+    </div>
+  </div>
+  <hr>
+</span>

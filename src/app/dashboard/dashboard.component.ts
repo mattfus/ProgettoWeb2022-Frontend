@@ -15,7 +15,8 @@ export class DashboardComponent implements OnInit {
 
   //Array di annunci
   public ads: Ad[] = [];
-  public sessionId = "";
+  public sessionId: string = "";
+  public searchType: string = "";
 
   constructor(private service: ServerService, private app: AppComponent) { }
 
@@ -25,9 +26,25 @@ export class DashboardComponent implements OnInit {
     this.service.getAds().subscribe(ads => this.ads = ads);
   }
 
+  public search(){
+      console.log(this.searchType);
+      let parameter = (<HTMLInputElement>document.getElementById("searchInput")).value;
+      this.ads = [];
+      this.service.searchAds(this.searchType, parameter).subscribe(ads => this.ads = ads);
+  }
+
   public getSessionId():string{
     return this.app.getSessionId();
   }
 
+  public onChange(event:Event){
+    this.searchType = (<HTMLInputElement>event.target).value;
+
+    console.log("Search type: " + this.searchType);
+  }
+
+  public getSearchType():string{
+    return this.searchType;
+  }
 
 }

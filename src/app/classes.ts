@@ -6,6 +6,8 @@ export interface Ad{
   property: Property;
   price: number;
   mq: number;
+  status: string;
+  city: string;
 }
 
 export class User{
@@ -18,6 +20,11 @@ export class User{
   email!: string;
   role!: string;
   isBanned!: boolean;
+  telephone!: string;
+  state!: string;
+  country!: string;
+  address!: string;
+  postalCode!: string;
 }
 
 export interface Property{
@@ -27,5 +34,11 @@ export interface Property{
   latitude: string;
   longitude: string;
   user : string;
+}
+
+export interface Image{
+  id: number;
+  data: string;
+  ad: Ad;
 }
 

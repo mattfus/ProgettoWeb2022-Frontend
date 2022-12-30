@@ -1,66 +1,77 @@
-<div class="container rounded bg-white mt-5 mb-5">
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCugDwETlCONJNbxQRQ7Qv5OwsD6bv98yY&callback=initMap"></script>
+<div class="container rounded bg-white justify-content-between">
   <div class="row">
-      <div class="col-md-2 col-lg-2 border-right" style="margin-top: -2%;">
-
+      <div class="col-lg-1">
       </div>
-      <div class="col-md-7 col-lg 7 border-right">
+      <form class="col-md-11 col-lg-9 col-sm-12 jumbotron jumbotron pt-1" style="margin-left: 5%;" id="addAdForm">
           <div class="p-1 py-5" style="margin-top: -5%;">
               <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4 class="text-center display-3">Aggiungi un Annuncio!</h4>
               </div>
-              <div class="row mt-2">
-                  <div class="col-md-6">
-                    <label for="titleInput">Titolo</label>
-                    <input id="titleInput" type="text" class="form-control" placeholder="Titolo" value="">
-                  </div>
-              </div>
-              <div class="row mt-2">
-                  <div class="col-md-12">
-                    <label for="text-areaInput">Descrizione</label>
-                    <textarea id="text-areaInput" type="text" class="form-control" placeholder="Descrizione" rows="4" value=""></textarea>
-                  </div>
-                  <div class="col-md-12">
-                    <label for="typeInput">Tipo</label>
-                    <select id="typeInput" type="text" class="form-control" placeholder="Tipo" value="">
-                      <option>Villa</option>
-                      <option>Appartamento</option>
-                      <option>Terreno</option>
-                    </select>
-                  </div>
+              <hr>
+              <div class="col-md-12 mt-3 input-group">
+                <div class="col-md-6">
+                  <label for="statusInput" class="h6">Affitto/Vendita</label>
+                  <select id="statusInput" type="text" class="form-control">
+                    <option>Affitto</option>
+                    <option default>Vendita</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="titleInput" class="h6">Titolo</label>
+                  <input id="titleInput" type="text" class="form-control" placeholder="Titolo" value="">
+                </div>
               </div>
               <div class="row mt-3">
                   <div class="col-md-12">
-                    <label for="mqInput">Metriquadri</label>
-                    <input id="mqInput" type="number" class="form-control" placeholder="mq" value="">
+                    <label for="text-areaInput" class="h6">Descrizione</label>
+                    <textarea id="text-areaInput" type="text" class="form-control" placeholder="Descrizione" rows="4" value=""></textarea>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-12 mt-3 input-group">
+                    <div class="col-md-6">
+                      <label for="typeInput" class="h6">Tipo</label>
+                      <select id="typeInput" type="text" class="form-control" placeholder="Tipo" value="">
+                        <option>Villa</option>
+                        <option>Appartamento</option>
+                        <option>Terreno</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="mqInput" class="h6">Metriquadri</label>
+                      <input id="mqInput" type="number" class="form-control" placeholder="mq" value="">
+                    </div>
                   </div>
-                  <div class="col-md-6">
-                    <label>Indirizzo di Residenza</label>
-                    <input type="text" class="form-control" placeholder="Indirizzo" value="Via Giacomo Matteotti">
+                  <div class="col-md-12 mt-2">
+                    <label for="mediaInput" class="h6">Aggiungi Foto e/o Video</label>
+                    <input class="form-control" type="file" id="mediaInput" multiple="multiple" accept="image/*">
                   </div>
-                  <div class="col-md-6">
-                    <label>CAP</label>
-                    <input type="tel" class="form-control" placeholder="CAP" value="87064">
-                  </div>
-                  <hr>
               </div>
-              <div class=" row mt-4">
-                  <div class="col-md-12">
-                    <label>Password</label>
-                    <input type="password" class="form-control" placeholder="password" value="">
+              <div class="row mt-2">
+                  <div *ngIf="apiLoaded | async" class="col-md-12">
+                    <br>
+                    <label for="mapInput" class="h6">Posizione</label>
+                    <google-map class="col-sm-12" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)">
+                      <map-marker *ngFor="let markerPosition of markerPositions"
+                                  [position]="markerPosition"
+                                  [options]="markerOptions">
+                      </map-marker>
+                    </google-map>
+                    <br>
                   </div>
-                  <div class="col-md-12">
-                    <label>Confirm Password</label>
-                    <input type="password" class="form-control" placeholder="Confirm password" value="">
+                  <div class="col-md-6">
+                    <label for="priceInput" class="h6">Prezzo</label>
+                    <input type="number" class="form-control" placeholder="Prezzo" id="priceInput" value="">
                   </div>
               </div>
               <div class="mt-5 text-center">
-                <button class="btn btn-primary profile-button" type="button">Salva Profilo</button>
+                <hr>
+                <a class="btn btn-primary profile-button mr-2" type="button" (click)="addAd()">Aggiungi Annuncio</a>
+                <a class="btn btn-danger profile-button ml-2" type="button" href="/dashboard?sessionId={{getSessionId()}}">Annulla</a>
               </div>
           </div>
-      </div>
-      <div class="col-md-2 col-lg-2">
+        </form>
+      <div class="col-md-1 col-lg-1">
           <div class="p-3 py-5">
 
           </div>

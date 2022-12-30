@@ -1,26 +1,74 @@
-<div *ngIf="getLoggedIn() === false" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-  <a class="my-0 mr-md-auto" href="http://localhost:4200/"><h1 class="my-0 mr-md-auto display-4 font-weight-normal ml-4">CasaSubito.it</h1></a>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="#">Supporto</a>
-    <a class="p-2 text-dark" href="#">Contattaci</a>
-  </nav>
-  <nav>
-    <a class="btn btn-outline-primary mr-md-3" href="http://localhost:8080/register">Registrati </a>
-    <a class="btn btn-outline-primary" href="http://localhost:8080/login">Login</a>
-  </nav>
+<div *ngIf="getLoggedIn() === false" class="navigation-wrap bg-light start-header start-style container" style="position: static;">
+  <div class="">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a id="logo" href="http://localhost:4200/dashboard">
+            <img src="../assets/casasubito-high-resolution-color-logo.png" alt="logo" width="370">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto py-4 py-md-0">
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="#">Contattaci</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="#">Supporto</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4 mr-auto">
+                 <a class="nav-link" href="http://localhost:8080/login"><i class="fa-solid fa-right-to-bracket"></i> Accedi</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:8080/register"><i class="fa-solid fa-user-plus"></i> Registrati</a>
+              </li>
+            </ul>
+          </div>
+
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div *ngIf="getLoggedIn() === true" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-  <a class="my-0 mr-md-auto" href="http://localhost:4200/dashboard?sessionId={{getSessionId()}}"><h1 class="my-0 mr-md-auto display-4 font-weight-normal ml-4">CasaSubito.it</h1></a>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a class="p-2 text-dark" href="#">Supporto</a>
-    <a class="p-2 text-dark" href="#">Contattaci</a>
-  </nav>
-  <nav>
-    <a class="btn btn-outline-primary mr-md-4" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><span><i class="fa fa-plus"></i> Annuncio</span></a>
-    <a class="btn btn-primary mr-md-4" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><span class="text-white">{{user.nickname}}</span></a>
-    <a class="btn btn-primary mr-md-4" href="http://localhost:8080/logout?sessionId={{getSessionId()}}"><span class="text-white">Esci</span></a>
-  </nav>
+<div *ngIf="getLoggedIn() === true" class="navigation-wrap bg-light start-header start-style" style="position: static;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="navbar navbar-expand-md navbar-light">
+          <a id="logo" href="http://localhost:4200/dashboard?sessionId={{getSessionId()}}">
+            <img src="../assets/casasubito-high-resolution-color-logo.png" alt="logo" width="370">
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto py-4 py-md-0">
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:4200/contactUs?sessionId={{getSessionId()}}">Contattaci</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:4200/help?sessionId={{getSessionId()}}">Supporto</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                 <a class="nav-link" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><i class="fa-solid fa-plus"></i> Annuncio</a>
+              </li>
+              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><i class="fa-solid fa-user"></i>{{user.nickname}}</a>
+              </li>
+              <li class="nav-item  pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:8080/logout?sessionId={{getSessionId()}}"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></a>
+              </li>
+            </ul>
+          </div>
+
+        </nav>
+      </div>
+    </div>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
@@ -78,4 +126,52 @@
     fg: '#eceeef',
     text: 'Thumbnail'
   });
+
+  (function($) { "use strict";
+
+	$(function() {
+		var header = $(".start-style");
+		$(window).scroll(function() {
+			var scroll = $(window).scrollTop();
+
+			if (scroll >= 10) {
+				header.removeClass('start-style').addClass("scroll-on");
+			} else {
+				header.removeClass("scroll-on").addClass('start-style');
+			}
+		});
+	});
+
+	//Animation
+
+	$(document).ready(function() {
+		$('body.hero-anime').removeClass('hero-anime');
+	});
+
+	//Menu On Hover
+
+	$('body').on('mouseenter mouseleave','.nav-item',function(e){
+			if ($(window).width() > 750) {
+				var _d=$(e.target).closest('.nav-item');_d.addClass('show');
+				setTimeout(function(){
+				_d[_d.is(':hover')?'addClass':'removeClass']('show');
+				},1);
+			}
+	});
+
+	//Switch light/dark
+
+	$("#switch").on('click', function () {
+		if ($("body").hasClass("dark")) {
+			$("body").removeClass("dark");
+			$("#switch").removeClass("switched");
+		}
+		else {
+			$("body").addClass("dark");
+			$("#switch").addClass("switched");
+		}
+	});
+
+  })(jQuery);
 </script>
+

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
@@ -9,6 +9,11 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { AddAdComponent } from './add-ad/add-ad.component';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { AdDetailsComponent } from './ad-details/ad-details.component';
+import { AdCardsComponent } from './ad-cards/ad-cards.component';
+
+
 
 @NgModule({
   declarations: [
@@ -16,6 +21,8 @@ import { AddAdComponent } from './add-ad/add-ad.component';
     DashboardComponent,
     ProfilesComponent,
     AddAdComponent,
+    AdDetailsComponent,
+    AdCardsComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,6 +30,8 @@ import { AddAdComponent } from './add-ad/add-ad.component';
     RouterModule.forRoot([]),
     HttpClientModule,
     FormsModule,
+    GoogleMapsModule,
+    HttpClientJsonpModule,
   ],
 
   providers: [],

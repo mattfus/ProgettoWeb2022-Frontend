@@ -29,4 +29,17 @@ export class ServerService {
     return this.http.get<Ad[]>('http://localhost:8080/ads');
   }
 
+  searchAds(searchType: string, parameter: string): Observable<Ad[]>{
+    return this.http.get<Ad[]>('http://localhost:8080/searchAds', {params: {searchType: searchType, parameter: parameter}});
+  }
+
+  addAd(sessionId: string, title: string, description: string, type: string, media: File | null | undefined, mq: string, latitude: string, longitude: string, price: string): Observable<string> {
+
+      return this.http.post<string>('http://localhost:8080/addAd', media, {params: {sessionId: sessionId, title: title, description: description, type: type, mq: mq, latitude: latitude, longitude: longitude, price: price}});
+
+    /*
+    var ad : Observable<string> = this.http.get<string>("http://localhost:8080" + "/addAd?" + "sessionId=" + sessionId + "&title=" + title + "&description=" + description + "&type=" + type + "&mq=" + mq + "&latitude=" + latitude + "&longitude=" + longitude);
+    */
+  }
+
 }
