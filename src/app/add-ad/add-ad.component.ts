@@ -18,7 +18,7 @@ export class AddAdComponent implements OnInit {
   apiLoaded: Observable<boolean> | undefined;
 
   constructor(private app: AppComponent, private httpClient: HttpClient, private service: ServerService) {
-      this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=API_KEY", "callback")
+      this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyCugDwETlCONJNbxQRQ7Qv5OwsD6bv98yY", "callback")
       .pipe(
         map(() => true),
         catchError(() => of(false)),
