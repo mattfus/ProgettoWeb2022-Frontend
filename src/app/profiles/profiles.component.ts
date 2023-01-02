@@ -49,6 +49,19 @@ export class ProfilesComponent implements OnInit {
     return this.user.isBanned;
   }
 
+  public updateUser(): void{
+    let name = (<HTMLInputElement>document.getElementById("name")).value;
+    let lastname = (<HTMLInputElement>document.getElementById("lastname")).value;
+    let telephone = (<HTMLInputElement>document.getElementById("telephone")).value;
+    let email = (<HTMLInputElement>document.getElementById("email")).value;
+    let state = (<HTMLInputElement>document.getElementById("state")).value;
+    let country = (<HTMLInputElement>document.getElementById("country")).value;
+    let address = (<HTMLInputElement>document.getElementById("address")).value;
+    let postalCode = (<HTMLInputElement>document.getElementById("postalCode")).value;
+    let password = (<HTMLInputElement>document.getElementById("password")).value;
+    let confirmPassword = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
 
+
+  }
 
 }

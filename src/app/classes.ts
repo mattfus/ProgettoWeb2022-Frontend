@@ -1,13 +1,16 @@
-export interface Ad{
-  id: number;
-  title: string;
-  description: string;
-  user: User;
-  property: Property;
-  price: number;
-  mq: number;
-  status: string;
-  city: string;
+
+export class Ad{
+  id!: number;
+  title!: string;
+  description!: string;
+  user!: User;
+  property!: Property;
+  price!: number;
+  mq!: number;
+  status!: string;
+  city!: string;
+  images!: Blob[];
+  imagesSrc!: string[];
 }
 
 export class User{
@@ -36,9 +39,12 @@ export interface Property{
   user : string;
 }
 
-export interface Image{
-  id: number;
-  data: string;
-  ad: Ad;
+export class Review{
+  id!: number;
+  title!: string;
+  description!: string;
+  vote!: number;
+  user!: User;
+  ad!: Ad;
 }
 

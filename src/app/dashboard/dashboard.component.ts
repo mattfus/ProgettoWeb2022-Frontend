@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   //Array di annunci
   public ads: Ad[] = [];
   public sessionId: string = "";
-  public searchType: string = "";
+  public searchType: string = "Città";
   public adsFilter: string = "all";
 
   constructor(private service: ServerService, private app: AppComponent) { }
@@ -30,8 +30,10 @@ export class DashboardComponent implements OnInit {
   public search(){
       console.log(this.searchType);
       let parameter = (<HTMLInputElement>document.getElementById("searchInput")).value;
-      this.ads = [];
-      this.service.searchAds(this.searchType, parameter).subscribe(ads => this.ads = ads);
+      if(parameter != "" || parameter != null){
+        this.ads = [];
+        this.service.searchAds(this.searchType, parameter).subscribe(ads => this.ads = ads);
+      }
   }
 
   public getSessionId():string{

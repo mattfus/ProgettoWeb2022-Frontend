@@ -31,7 +31,6 @@ export class AppComponent {
           this.service.getUserBySession(id).subscribe(user => this.user = user).add( () => {
             if(this.loggedIn && id != null && id != ""){
               this.setSessionId(id);
-              console.log(this.user.isBanned);
               if(this.user.name == undefined){
                 this.loggedIn = false;
                 window.location.replace("http://localhost:4200/");

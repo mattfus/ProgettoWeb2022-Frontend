@@ -30,8 +30,8 @@ export class AddAdComponent implements OnInit {
    result:string = "";
    sessionId: string = "";
 
-   center: google.maps.LatLngLiteral = {lat: 24, lng: 12};
-   zoom = 4;
+   center: google.maps.LatLngLiteral = {lat: 41.97707664579145, lng: 12.439453124999996};
+   zoom = 5;
    markerOptions: google.maps.MarkerOptions = {draggable: false};
    markerPositions: google.maps.LatLngLiteral[] = [];
 
@@ -71,21 +71,19 @@ export class AddAdComponent implements OnInit {
     let latitude = this.lat;
     let longitude = this.lng;
 
-    let media;
+    let media: Blob[] = [];
 
     if(photos != undefined)
-      for(let i = 0; i < photos?.length; i++){
-        media = photos?.item(i);
-        this.service.addAd(this.getSessionId(), title, description, type, media, mq, latitude, longitude, price).subscribe(result => this.result = result).add(() => {
-          if(this.result == "true"){
-            alert("Annuncio pubblicato con successo");
-          }
-          else{
-            alert("Errore nell'aggiunta dell'annuncio");
-          }
-        });
+      for(let i = 0; i < photos.length; i++){
+        media.push(photos[i]);
       }
-
-
+      this.service.addAd(this.getSessionId(), title, description, type, media, mq, latitude, longitude, price).subscribe(result => this.result = result).add(() => {
+        if(this.result == "true" || this.result === "true" ){
+          alert("Annuncio pubblicato con successo");
+        }
+        else{
+          alert("Errore nell'aggiunta dell'annuncio");
+        }
+      });
   }
 }

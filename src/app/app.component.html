@@ -57,7 +57,10 @@
                  <a class="nav-link" href="http://localhost:4200/addAd?sessionId={{getSessionId()}}"><i class="fa-solid fa-plus"></i> Annuncio</a>
               </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><i class="fa-solid fa-user"></i>{{user.nickname}}</a>
+                <a class="nav-link" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><i class="fa-solid fa-user"></i> {{user.nickname}}</a>
+              </li>
+              <li *ngIf="user.role === 'admin'" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
+                <a class="nav-link" href="http://localhost:4200/admin?sessionId={{getSessionId()}}"><i class="fa-solid fa-admin"></i>Pannello Admin</a>
               </li>
               <li class="nav-item  pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="http://localhost:8080/logout?sessionId={{getSessionId()}}"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></a>
@@ -76,7 +79,7 @@
 <footer class="pt-4 my-md-5 pt-md-5 border-top container">
   <div class="row">
     <div class="col-12 col-md">
-      <i class="fa fa-house"></i>
+      <img src="../assets/casasubito-high-resolution-color-logo.png" alt="logo" width="150">
       <small class="d-block mb-3 text-muted">&copy; 2022-2024</small>
     </div>
     <div class="col-6 col-md">
@@ -86,8 +89,6 @@
         <li><a class="text-muted" href="#">Random feature</a></li>
         <li><a class="text-muted" href="#">Team feature</a></li>
         <li><a class="text-muted" href="#">Stuff for developers</a></li>
-        <li><a class="text-muted" href="#">Another one</a></li>
-        <li><a class="text-muted" href="#">Last time</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">

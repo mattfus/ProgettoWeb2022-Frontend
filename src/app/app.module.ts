@@ -12,6 +12,9 @@ import { AddAdComponent } from './add-ad/add-ad.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
 import { AdCardsComponent } from './ad-cards/ad-cards.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AdminComponent } from './admin/admin.component';
+import { ReviewsComponent } from './reviews/reviews.component';
 
 
 
@@ -23,6 +26,9 @@ import { AdCardsComponent } from './ad-cards/ad-cards.component';
     AddAdComponent,
     AdDetailsComponent,
     AdCardsComponent,
+    ContactUsComponent,
+    AdminComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserModule,
