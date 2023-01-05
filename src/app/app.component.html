@@ -1,5 +1,5 @@
-<div *ngIf="getLoggedIn() === false" class="navigation-wrap bg-light start-header start-style container" style="position: static;">
-  <div class="">
+<div *ngIf="getLoggedIn() === false" class="navigation-wrap bg-light start-header start-style" style="position: static;">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <nav class="navbar navbar-expand-md navbar-light">
@@ -12,9 +12,6 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto py-4 py-md-0">
-              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="http://localhost:4200/contactUs">Contattaci</a>
-              </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="http://localhost:4200/help">Supporto</a>
               </li>
@@ -47,9 +44,6 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto py-4 py-md-0">
-              <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="http://localhost:4200/contactUs?sessionId={{getSessionId()}}">Contattaci</a>
-              </li>
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="http://localhost:4200/help?sessionId={{getSessionId()}}">Supporto</a>
               </li>
@@ -85,28 +79,24 @@
     <div class="col-6 col-md">
       <h5>Features</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Cool stuff</a></li>
-        <li><a class="text-muted" href="#">Random feature</a></li>
-        <li><a class="text-muted" href="#">Team feature</a></li>
-        <li><a class="text-muted" href="#">Stuff for developers</a></li>
-      </ul>
-    </div>
-    <div class="col-6 col-md">
-      <h5>Resources</h5>
-      <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Resource</a></li>
-        <li><a class="text-muted" href="#">Resource name</a></li>
-        <li><a class="text-muted" href="#">Another resource</a></li>
-        <li><a class="text-muted" href="#">Final resource</a></li>
+        <li><a class="text-muted" href="http://localhost:8080/register">Registrati</a></li>
+        <li><a class="text-muted" href="http://localhost:8080/login">Accedi</a></li>
+        <li><a class="text-muted" href="https://fontawesome.com">Icons</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">
       <h5>About</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="#">Team</a></li>
-        <li><a class="text-muted" href="#">Locations</a></li>
-        <li><a class="text-muted" href="#">Privacy</a></li>
-        <li><a class="text-muted" href="#">Terms</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/about"> Our Team</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/support">Privacy</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/support">Terms</a></li>
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Social</h5>
+      <ul class="list-unstyled text-small">
+        <li><a class="text-muted" href="https://facebook.com/CasaSubito.it"><i class="fa-brands fa-facebook"></i></a></li>
+        <li><a class="text-muted" href="https://instagram.com/CasaSubito"><i class="fa-brands fa-instagram"></i></a></li>
       </ul>
     </div>
   </div>

@@ -14,7 +14,7 @@
                   <div class="card-block px-2">
                       <h3 class="card-title">{{ad.title}}</h3>
                       <p class="card-text">{{ad.description}}</p>
-                      <a href="#" class="btn btn-primary" disabled="disabled">{{ad.price}}</a>
+                      <a class="btn btn-primary" >{{ad.price}} &euro;</a>
                       <hr>
                       <a href="/profiles/{{ad.user.nickname}}?sessionId={{getSessionId()}}" class="card-text text-dark">{{ad.user.nickname}}</a>
                   </div>

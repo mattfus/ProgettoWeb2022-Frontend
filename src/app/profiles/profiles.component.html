@@ -1,15 +1,16 @@
-<div *ngIf="loggedUser.nickname === user.nickname"class="container rounded bg-white mt-5 mb-5">
+<div *ngIf="loggedUser.nickname === user.nickname" class="container rounded bg-white mt-5 mb-5">
   <div class="row">
-      <div class="col-md-3 border-right" style="margin-top: -2%;">
+      <div class="col-lg-3 col-md-0 col-sm-12 border-right" style="margin-top: -2%;">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
             <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
             <span class="font-weight-bold h3">{{user.name}} {{user.lastname}}</span>
             <span class="text-black-50">{{user.email}}</span></div>
             <div *ngIf="loggedUser.role === 'admin'" class="text-center">
-              <button class="btn alert-danger" type="button" >Banna Utente</button>
+              <button *ngIf="!user.isBanned" class="btn alert-danger" type="button" (click)="banUser(user.nickname)">Banna Utente</button>
+              <button *ngIf="user.isBanned" class="btn alert-danger" type="button" (click)="unBanUser(user.nickname)">Sbanna Utente</button>
             </div>
       </div>
-      <div class="col-md-5 border-right">
+      <div class="col-lg-6 col-md-12 col-sm-12 border-right">
           <div class="p-1 py-5" style="margin-top: -5%;">
               <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4 class="text-center display-3">Profilo</h4>
@@ -64,11 +65,11 @@
                   </div>
               </div>
               <div class="mt-5 text-center">
-                <button class="btn btn-primary profile-button" type="button">Salva Profilo</button>
+                <button class="btn btn-primary profile-button" type="button" (click)="updateUser()">Salva Profilo</button>
               </div>
           </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-3 col-md-12 col-sm-12">
           <div class="p-3 py-5">
               <div class="d-flex justify-content-between align-items-center experience">
                 <span>Immobili</span>
@@ -89,7 +90,7 @@
 
 <div *ngIf="loggedUser.nickname !== user.nickname"class="container rounded bg-white mt-5 mb-5">
   <div class="row">
-      <div class="col-md-3 border-right" style="margin-top: -2%;">
+      <div class="col-lg-3 col-md-0 col-sm-12 border-right" style="margin-top: -2%;">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
             <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
             <span class="font-weight-bold">{{user.name}} {{user.lastname}}</span>
@@ -99,7 +100,7 @@
             <button class="btn alert-danger" type="button">Banna Utente</button>
           </div>
       </div>
-      <div class="col-md-5 border-right">
+      <div class="col-lg-6 col-md-12 col-sm-12 border-right">
           <div class="p-1 py-5" style="margin-top: -5%;">
               <div class="d-flex justify-content-between align-items-center mb-3">
                   <h4 class="text-center display-4">Profilo</h4>

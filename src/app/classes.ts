@@ -37,6 +37,7 @@ export interface Property{
   latitude: string;
   longitude: string;
   user : string;
+  ad : number;
 }
 
 export class Review{

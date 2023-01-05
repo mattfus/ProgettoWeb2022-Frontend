@@ -61,7 +61,21 @@ export class ProfilesComponent implements OnInit {
     let password = (<HTMLInputElement>document.getElementById("password")).value;
     let confirmPassword = (<HTMLInputElement>document.getElementById("confirmPassword")).value;
 
+    if(password.length > 8 && password == confirmPassword){
+      this.service.updateUser(this.user.nickname, name, lastname, telephone, email, state, country, address, postalCode, password).subscribe();
+    }else if(password.length == 0 && confirmPassword.length == 0){
+      this.service.updateUser(this.user.nickname, name, lastname, telephone, email, state, country, address, postalCode, "").subscribe();
+    }else{
+      alert("La password deve essere di almeno 8 caratteri e deve essere uguale a quella di conferma");
+    }
 
   }
 
+  public banUser(nickname: string): void{
+    this.service.banUser(nickname).subscribe();
+  }
+
+  public unBanUser(nickname: string): void{
+    this.service.unbanUser(nickname).subscribe();
+  }
 }

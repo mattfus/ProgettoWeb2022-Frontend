@@ -4,6 +4,7 @@ import { Ad } from '../classes';
 import { User } from '../classes';
 import { Review } from '../classes';
 import { ServerService } from '../server.service';
+import { AppComponent } from '../app.component';
 
 
 @Component({
@@ -19,8 +20,9 @@ export class ReviewsComponent {
   @Input() owner: User = new User();
   public reviews: Review[] = [];
   public average: number = 0;
+  public sessionId: string = "";
 
-  constructor(private service: ServerService) { }
+  constructor(private service: ServerService, private app: AppComponent) { }
 
   ngOnInit(): void {
     console.log(this.adId);
@@ -46,4 +48,9 @@ export class ReviewsComponent {
       }
     })
   }
+
+  getSessionId(): string{
+    return this.app.getSessionId();
+  }
+
 }

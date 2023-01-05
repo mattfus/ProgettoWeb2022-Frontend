@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Ad } from '../classes';
+import { Ad, Property } from '../classes';
 import { User } from '../classes';
 import { ServerService } from '../server.service';
 import { AppComponent } from '../app.component';
 import { Renderer2 } from '@angular/core';
 import { retry } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
+import { GoogleMapsModule } from '@angular/google-maps';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Component({
   selector: 'app-ad-details',
@@ -26,8 +28,25 @@ export class AdDetailsComponent {
   public display:Boolean=false;
   public displayRece:Boolean=false;
   public changed: boolean = false;
+  public property!: Property;
+  apiLoaded: Observable<boolean> | undefined;
+  mapLoaded: boolean | undefined;
+  noImage: boolean = false;
 
-  constructor(private service: ServerService, private app: AppComponent, private renderer: Renderer2) {
+  //API GOOGLE MAPS
+  public lat: string ="";
+  public lng: string ="";
+  center: google.maps.LatLngLiteral = {lat: 41.97707664579145, lng: 12.439453124999996};
+  zoom = 5;
+  markerOptions: google.maps.MarkerOptions = {draggable: false};
+  markerPositions: google.maps.LatLngLiteral[] = [];
+
+  constructor(private service: ServerService, private app: AppComponent, private renderer: Renderer2, private httpClient: HttpClient) {
+    this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyCugDwETlCONJNbxQRQ7Qv5OwsD6bv98yY", "callback")
+      .pipe(
+        map(() => true),
+        catchError(() => of(false)),
+      );
   }
 
   ngOnInit(): void {
@@ -47,6 +66,7 @@ export class AdDetailsComponent {
         this.blobs = blobList;
         let carosello = document.getElementById("carosello") as HTMLDivElement;
         console.log(carosello);
+        this.noImage = true;
         for(let i = 0 ; i < this.blobs.length; i++){
           let div = this.renderer.createElement("div") as HTMLDivElement;
           let img = this.renderer.createElement("img") as HTMLImageElement;
@@ -61,19 +81,26 @@ export class AdDetailsComponent {
           carosello.appendChild(div);
           console.log(div);
           console.log(img);
+          this.noImage = false;
         }
       }).add(() =>{
-        this.service.getUserBySession(session).subscribe(user => this.user = user);
+        this.service.getUserBySession(session).subscribe(user => this.user = user).add(() => {
+          this.service.getProperty(this.ad.id).subscribe(property => {
+            this.property = property
+            this.lat = property.latitude;
+            this.lng = property.longitude;
+            this.markerPositions.push({lat: parseFloat(this.lat), lng: parseFloat(this.lng)});
+            this.center = {lat: parseFloat(this.lat), lng: parseFloat(this.lng)};
+            this.zoom = 13;
+            this.mapLoaded = true;
+          });
+        });
       });
     }).add(() => {
       console.log(this.ad.images.at(0));
     });
-}
 
 
-  ngAfterContentChecked(): void {
-    //Called after every check of the component's or directive's content.
-    //Add 'implements AfterContentChecked' to the class.
   }
 
   public getSessionId(): string {

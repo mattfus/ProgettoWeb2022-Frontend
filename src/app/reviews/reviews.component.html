@@ -8,7 +8,8 @@
       <button class="btn btn-danger" (click)="deleteReview(review.id)">Elimina</button>
     </div>
     <div>
-      <h4><i class="fa-regular fa-user"></i> {{review.user.nickname}} </h4>
+      <h4 *ngIf="user.nickname != undefined"><a href="http://localhost:4200/profiles/{{review.user.nickname}}?sessionId={{getSessionId()}}"><i class="fa-regular fa-user"></i> {{review.user.nickname}}</a> </h4>
+      <h4 *ngIf="user.nickname == undefined"><a href="http://localhost:4200/profiles/{{review.user.nickname}}"><i class="fa-regular fa-user"></i> {{review.user.nickname}}</a> </h4>
     </div>
     <!-- titolo + descrizione-->
     <div style="margin-left: 10px;">

@@ -36,9 +36,9 @@ export class ServerService {
     return this.http.get<Ad[]>('http://localhost:8080/searchAds', {params: {searchType: searchType, parameter: parameter}});
   }
 
-  addAd(sessionId: string, title: string, description: string, type: string, media: Blob[] | null | undefined, mq: string, latitude: string, longitude: string, price: string): Observable<string> {
+  addAd(sessionId: string, status: string, title: string, description: string, type: string, mq: string, latitude: string, longitude: string, price: string): Observable<string> {
 
-      return this.http.post<string>('http://localhost:8080/addAd', media, {params: {sessionId: sessionId, title: title, description: description, type: type, mq: mq, latitude: latitude, longitude: longitude, price: price}});
+      return this.http.post<string>('http://localhost:8080/addAd', {params: {sessionId: sessionId, title: title, description: description, type: type, mq: mq, latitude: latitude, longitude: longitude, price: price, status: status}});
 
     /*
     var ad : Observable<string> = this.http.get<string>("http://localhost:8080" + "/addAd?" + "sessionId=" + sessionId + "&title=" + title + "&description=" + description + "&type=" + type + "&mq=" + mq + "&latitude=" + latitude + "&longitude=" + longitude);
@@ -66,8 +66,24 @@ export class ServerService {
     return this.http.get<Review[]>('http://localhost:8080/getReviews', {params: {adId: adId}});
   }
 
+  getProperty(adId: number): Observable<Property>{
+    return this.http.get<Property>('http://localhost:8080/property?adId=' + adId);
+  }
+
   removeReview(reviewId: number): Observable<boolean>{
     return this.http.get<boolean>('http://localhost:8080/removeReview?reviewId=' + reviewId);
+  }
+
+  banUser(nickname: string): Observable<boolean>{
+    return this.http.get<boolean>('http://localhost:8080/banUser?nickname=' + nickname);
+  }
+
+  unbanUser(nickname: string): Observable<boolean>{
+    return this.http.get<boolean>('http://localhost:8080/banUser?nickname=' + nickname);
+  }
+
+  updateUser(nickname: string, name:string, lastname:string, telephone: string, email:string, state:string, country:string, address: string, postalCode: string, password: string){
+    return this.http.get<boolean>('http://localhost:8080/updateUser?nickname=' + nickname + '&name=' + name + '&lastname=' + lastname + '&telephone=' + telephone + '&email=' + email + '&state=' + state + '&country=' + country + '&address=' + address + '&postalCode=' + postalCode + '&password=' + password);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AppComponent } from '../app.component';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -47,21 +47,22 @@ export class AddAdComponent implements OnInit {
    }
 
   ngOnInit(): void {
-
-  }
-
-  ngAfterContentChecked(): void {
-    //Called after every check of the component's or directive's content.
-    //Add 'implements AfterContentChecked' to the class.
-    this.sessionId = this.getSessionId();
   }
 
   public getSessionId():string{
     return this.app.getSessionId();
   }
 
+  public async addAd(): Promise<void>{
+    this.sessionId = this.app.getSessionId();
+    console.log("sessionID: " + this.sessionId);
+    if(this.sessionId == null || this.sessionId == ""){
+      window.location.href = "http://localhost:8080/login";
+      alert("Effettua il login per poter pubblicare un annuncio");
+      return;
+    }
 
-  public addAd(): void{
+    let status = (<HTMLInputElement>document.getElementById("statusInput")).value;
     let title = (<HTMLInputElement>document.getElementById("titleInput")).value;
     let description = (<HTMLInputElement>document.getElementById("text-areaInput")).value;
     let type = (<HTMLInputElement>document.getElementById("typeInput")).value;
@@ -73,11 +74,23 @@ export class AddAdComponent implements OnInit {
 
     let media: Blob[] = [];
 
-    if(photos != undefined)
-      for(let i = 0; i < photos.length; i++){
-        media.push(photos[i]);
+    let formData = new FormData();
+
+    if(photos != null)
+      formData.append("photos", photos[0], photos[0].name);
+      let response = await fetch('http://localhost:8080/upload',
+       {
+         method: 'POST',
+         body: formData
+       }
+      );
+      if(response.status == 200){
+        alert('Upload effettuato con successo');
       }
-      this.service.addAd(this.getSessionId(), title, description, type, media, mq, latitude, longitude, price).subscribe(result => this.result = result).add(() => {
+
+      //this.service.sendBlobs(byteArray);
+      /*
+      this.service.addAd(this.getSessionId(), status, title, description, type, mq, latitude, longitude, price).subscribe(result => this.result = result).add(() => {
         if(this.result == "true" || this.result === "true" ){
           alert("Annuncio pubblicato con successo");
         }
@@ -85,5 +98,6 @@ export class AddAdComponent implements OnInit {
           alert("Errore nell'aggiunta dell'annuncio");
         }
       });
+      */
   }
 }
