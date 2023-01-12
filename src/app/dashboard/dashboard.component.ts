@@ -18,6 +18,7 @@ export class DashboardComponent implements OnInit {
   public sessionId: string = "";
   public searchType: string = "Città";
   public adsFilter: string = "all";
+  public order: number = 0;
 
   constructor(private service: ServerService, private app: AppComponent) { }
 
@@ -52,6 +53,14 @@ export class DashboardComponent implements OnInit {
 
   public getSearchType():string{
     return this.searchType;
+  }
+
+  public onOrderChange(){
+    if(this.order + 1 == 3){
+      this.order = 0;
+      return;
+    }
+    this.order = this.order + 1;
   }
 
 }

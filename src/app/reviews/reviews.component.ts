@@ -26,7 +26,12 @@ export class ReviewsComponent {
 
   ngOnInit(): void {
     console.log(this.adId);
-    this.service.getReviews(this.adId).subscribe(reviews => this.reviews = reviews);
+    this.service.getReviews(this.adId).subscribe(reviews => {
+      this.reviews = reviews;
+      for(let review of this.reviews){
+        console.log(review.description);
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

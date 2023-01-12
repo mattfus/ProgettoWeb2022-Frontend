@@ -9,6 +9,8 @@ import { retry } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { Observable, catchError, map, of } from 'rxjs';
+import { FacebookService, InitParams, LoginResponse, UIParams, UIResponse } from 'ngx-facebook';
+
 
 @Component({
   selector: 'app-ad-details',
@@ -40,29 +42,39 @@ export class AdDetailsComponent {
   zoom = 5;
   markerOptions: google.maps.MarkerOptions = {draggable: false};
   markerPositions: google.maps.LatLngLiteral[] = [];
+  public url: string = "";
 
-  constructor(private service: ServerService, private app: AppComponent, private renderer: Renderer2, private httpClient: HttpClient) {
+  constructor(private service: ServerService, private app: AppComponent, private renderer: Renderer2, private httpClient: HttpClient, private fb: FacebookService) {
     this.apiLoaded = httpClient.jsonp("https://maps.googleapis.com/maps/api/js?key=AIzaSyCugDwETlCONJNbxQRQ7Qv5OwsD6bv98yY", "callback")
       .pipe(
         map(() => true),
         catchError(() => of(false)),
       );
+
+      const initParams: InitParams = {
+        appId: '560352242616863',
+        xfbml: true,
+        version: 'v2.8'
+      };
+
+      fb.init(initParams);
   }
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     const url = new URL(window.location.href);
+    this.url = url.href;
     this.id = url.pathname.split("/")[2];
     let session: string | null;
     session = url.searchParams.get("sessionId");
     this.service.getAd(this.id).subscribe((ad: Ad) => {
       this.ad = ad;
+      console.log(this.ad.auction);
       this.owner = ad.user;
       this.adId = ad.id;
       this.sessionId = session;
-      this.service.getImage(this.ad.id).subscribe(blobList => {
-        this.ad.images = blobList;
+      this.service.getImage(this.adId).subscribe(blobList => {
         this.blobs = blobList;
         let carosello = document.getElementById("carosello") as HTMLDivElement;
         console.log(carosello);
@@ -85,7 +97,8 @@ export class AdDetailsComponent {
         }
       }).add(() =>{
         this.service.getUserBySession(session).subscribe(user => this.user = user).add(() => {
-          this.service.getProperty(this.ad.id).subscribe(property => {
+          console.log("ID PROPRIETà: " + this.ad.property);
+          this.service.getProperty(this.ad.property).subscribe(property => {
             this.property = property
             this.lat = property.latitude;
             this.lng = property.longitude;
@@ -96,10 +109,7 @@ export class AdDetailsComponent {
           });
         });
       });
-    }).add(() => {
-      console.log(this.ad.images.at(0));
-    });
-
+    })
 
   }
 
@@ -117,7 +127,8 @@ export class AdDetailsComponent {
 
     if(text.value){
       let result: boolean;
-      this.service.sendEmail(title,adId,text.value, this.user.email).subscribe(a=> result = a).add(() => {
+      console.log(this.owner.email);
+      this.service.sendEmail(title,adId,text.value, this.owner.email, this.user.email).subscribe(a=> result = a).add(() => {
         if(result){
           alert("La Consegna del messaggio e' andata a buon fine il venditore ti rispondera' nel tempo' piu' breve possibile, tipicamente in 48h");
           this.onContact();
@@ -193,4 +204,33 @@ export class AdDetailsComponent {
   isUserLogged(): boolean{
     return this.app.getLoggedIn();
   }
+
+  onDelete(): void {
+    let result: boolean;
+    this.service.deleteAd(this.ad.id).subscribe(a => result = a).add(() =>{
+      if(result == true)
+        window.location.replace("/dashboard?sessionId=" + this.getSessionId());
+      else{
+        alert("Qualcosa e' andato storto, riprova tra qualche minuto");
+      }
+    });
+  }
+
+  onEditSave(): void{
+    let title = this.renderer.selectRootElement('#titleValue');
+    let price = this.renderer.selectRootElement('#priceValue');
+    let description = this.renderer.selectRootElement('#descriptionValue');
+
+    let result: boolean;
+    this.service.editAd(this.ad.id, title.value, description.value, price.value).subscribe(a => {
+      result = a;
+      console.log(result);
+      if(result === true)
+        window.location.reload();
+      else{
+        alert("Qualcosa e' andato storto, riprova tra qualche minuto");
+      }
+    })
+  }
+
 }

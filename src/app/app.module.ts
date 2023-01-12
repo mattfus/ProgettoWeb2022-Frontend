@@ -12,9 +12,12 @@ import { AddAdComponent } from './add-ad/add-ad.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
 import { AdCardsComponent } from './ad-cards/ad-cards.component';
-import { AdminComponent } from './admin/admin.component';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { SupportComponent } from './support/support.component';
+import { AuctionDetailsComponent } from './auction-details/auction-details.component';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareIconsModule } from 'ngx-sharebuttons/icons';
+import { FacebookModule } from 'ngx-facebook';
 
 
 
@@ -26,9 +29,9 @@ import { SupportComponent } from './support/support.component';
     AddAdComponent,
     AdDetailsComponent,
     AdCardsComponent,
-    AdminComponent,
     ReviewsComponent,
     SupportComponent,
+    AuctionDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,11 @@ import { SupportComponent } from './support/support.component';
     FormsModule,
     GoogleMapsModule,
     HttpClientJsonpModule,
+    ShareButtonsModule.withConfig({
+      debug: true,
+    }),
+    ShareIconsModule,
+    FacebookModule.forRoot(),
   ],
 
   providers: [],

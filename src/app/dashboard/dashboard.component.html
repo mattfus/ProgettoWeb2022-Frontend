@@ -35,7 +35,12 @@
       <label class="btn btn-primary" (click)="onAdsFilterChange('sell')">
         <input type="radio" name="options" id="option3"> Vendita
       </label>
+      <label class="btn btn-info col-lg-1 col-md-1 col-sm-1" (click)="onOrderChange()">
+        <input type="radio" name="options" id="option4"><i class="fa fa-sort"></i>
+      </label>
     </div>
-    <app-ad-cards [filter]="adsFilter" [ads]="ads"></app-ad-cards>
+    <div>
+    </div>
+    <app-ad-cards [order]="order" [filter]="adsFilter" [ads]="ads"></app-ad-cards>
   </div>
 </div>

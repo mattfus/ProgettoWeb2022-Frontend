@@ -17,6 +17,7 @@ export class AdCardsComponent implements OnChanges {
 
   @Input() ads: Ad[] = [] //Array di annunci
   @Input() filter: string = ""; //Filtro di annunci
+  @Input() order: number = 0; //Ordinamento di annunci
 
   constructor(private app: AppComponent, private service: ServerService, private sanitazer: DomSanitizer) {
 
@@ -25,6 +26,14 @@ export class AdCardsComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log("ngOnChanges: " + changes);
     console.log(this.ads.length);
+
+    if(this.order == 1){
+      this.ads.sort((a,b) => a.price - b.price);
+    }else if(this.order == 2){
+      this.ads.sort((a,b) => b.price - a.price);
+    }else{
+      this.ads = this.ads;
+    }
 
     for(let i = 0; i< this.ads.length; i++){
       this.service.getImage(this.ads[i].id).subscribe(blobList => this.ads[i].images = blobList).add( () => {
@@ -36,7 +45,6 @@ export class AdCardsComponent implements OnChanges {
         }
       });
     }
-
   }
 
   public ngOnInit(): void {

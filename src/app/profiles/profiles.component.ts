@@ -25,7 +25,9 @@ export class ProfilesComponent implements OnInit {
     const url = new URL(window.location.href);
     this.profile = url.pathname.split("/")[2];
     console.log(this.profile);
-    this.service.getUserByNickname(this.profile).subscribe(user => this.user = user);
+    this.service.getUserByNickname(this.profile).subscribe(user => this.user = user).add(()=>{
+      console.log(this.user.role);
+    })
   }
 
   ngAfterContentChecked(): void {
@@ -33,7 +35,7 @@ export class ProfilesComponent implements OnInit {
     //Add 'implements AfterContentChecked' to the class.
     this.sessionId = this.app.getSessionId();
     this.loggedUser = this.app.getUser();
-    console.log(this.user.isBanned);
+    console.log(this.user.role);
 
   }
 
@@ -47,6 +49,10 @@ export class ProfilesComponent implements OnInit {
 
   public getUserBanned(): boolean{
     return this.user.isBanned;
+  }
+
+  public getUserRole(): string{
+    return this.user.role;
   }
 
   public updateUser(): void{
@@ -72,10 +78,15 @@ export class ProfilesComponent implements OnInit {
   }
 
   public banUser(nickname: string): void{
-    this.service.banUser(nickname).subscribe();
+    let res;
+    this.service.banUser(nickname).subscribe(result => res = result);
   }
 
   public unBanUser(nickname: string): void{
     this.service.unbanUser(nickname).subscribe();
+  }
+
+  public makeAdmin(nickname: string): void{
+    this.service.makeAdmin(nickname).subscribe();
   }
 }

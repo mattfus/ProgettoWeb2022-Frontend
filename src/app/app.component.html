@@ -53,9 +53,6 @@
               <li class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="http://localhost:4200/profiles/{{user.nickname}}?sessionId={{sessionId}}"><i class="fa-solid fa-user"></i> {{user.nickname}}</a>
               </li>
-              <li *ngIf="user.role === 'admin'" class="nav-item pl-4 pl-md-0 ml-0 ml-md-4">
-                <a class="nav-link" href="http://localhost:4200/admin?sessionId={{getSessionId()}}"><i class="fa-solid fa-admin"></i>Pannello Admin</a>
-              </li>
               <li class="nav-item  pl-4 pl-md-0 ml-0 ml-md-4">
                 <a class="nav-link" href="http://localhost:8080/logout?sessionId={{getSessionId()}}"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></a>
               </li>
@@ -87,9 +84,9 @@
     <div class="col-6 col-md">
       <h5>About</h5>
       <ul class="list-unstyled text-small">
-        <li><a class="text-muted" href="http://localhost:4200/about"> Our Team</a></li>
-        <li><a class="text-muted" href="http://localhost:4200/support">Privacy</a></li>
-        <li><a class="text-muted" href="http://localhost:4200/support">Terms</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/about">Our Team</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/help">Privacy</a></li>
+        <li><a class="text-muted" href="http://localhost:4200/help">Terms</a></li>
       </ul>
     </div>
     <div class="col-6 col-md">

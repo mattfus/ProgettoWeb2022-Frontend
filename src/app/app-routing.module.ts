@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { AddAdComponent } from './add-ad/add-ad.component';
 import { AdDetailsComponent } from './ad-details/ad-details.component';
-import { AdminComponent } from './admin/admin.component';
 import { SupportComponent } from './support/support.component';
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   { path: 'addAd', component: AddAdComponent},
   { path: 'ad/:id', component: AdDetailsComponent},
   { path: 'help', component: SupportComponent},
-  { path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

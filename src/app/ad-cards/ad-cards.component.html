@@ -11,10 +11,10 @@
                 <img src="" id="img{{ad.id}}" width="400" height="250">
               </div>
               <div class="col">
-                  <div class="card-block px-2">
-                      <h3 class="card-title">{{ad.title}}</h3>
-                      <p class="card-text">{{ad.description}}</p>
-                      <a class="btn btn-primary" >{{ad.price}} &euro;</a>
+                  <div class="card-block px-1">
+                      <h4 class="card-title d-inline-block">{{ad.title}}</h4>
+                      <p class="card-text text-break">{{ad.description}}</p>
+                      <a class="btn btn-primary">{{ad.price}} &euro;</a>
                       <hr>
                       <a href="/profiles/{{ad.user.nickname}}?sessionId={{getSessionId()}}" class="card-text text-dark">{{ad.user.nickname}}</a>
                   </div>

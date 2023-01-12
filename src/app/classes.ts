@@ -4,13 +4,13 @@ export class Ad{
   title!: string;
   description!: string;
   user!: User;
-  property!: Property;
+  property!: number;
   price!: number;
   mq!: number;
   status!: string;
   city!: string;
-  images!: Blob[];
-  imagesSrc!: string[];
+  auction!: string
+  images: Blob[] = [];
 }
 
 export class User{
@@ -47,5 +47,14 @@ export class Review{
   vote!: number;
   user!: User;
   ad!: Ad;
+}
+
+export class Auction{
+  id!: number;
+  endTime!: string;
+  currentPrice!: number;
+  winner!: string;
+  ad!: number;
+  numTips!: number;
 }
 
